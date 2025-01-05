@@ -30,10 +30,9 @@ scipy
 
 **Eye Aspect Ratio (EAR)**
 
-The EAR is calculated using the following formula: Where:
+The EAR is calculated using the following formula:
 
 ![EAR's formula](/images/image1.png)
-- are the eye landmarks.
 
 **Facial Landmark Detection**
 
