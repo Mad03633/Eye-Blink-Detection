@@ -33,7 +33,7 @@ scipy
 The EAR is calculated using the following formula: Where:
 
 - are the eye landmarks.
-
+![EAR's formula](/images/image1.png)
 
 **Facial Landmark Detection**
 
