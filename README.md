@@ -38,3 +38,5 @@ The EAR is calculated using the following formula:
 
 Dlib's pre-trained shape_predictor_68_face_landmarks.dat model is used to extract facial landmarks, 
 including eye coordinates.
+
+![Facial Landmarks](/images/image2.jpg)
