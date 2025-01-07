@@ -5,7 +5,7 @@ from scipy.spatial import distance as dist
 from imutils import face_utils
 
 
-def calculate_EAR(eye):
+def calculate_EAR(eye: list) -> float:
     if len(eye) < 6: 
         return 0
     y1 = dist.euclidean(eye[1], eye[5])
@@ -14,26 +14,28 @@ def calculate_EAR(eye):
     EAR = (y1 + y2) / (2.0 * x1)
     return EAR
 
-detector = dlib.get_frontal_face_detector()
-predictor = dlib.shape_predictor('shape_predictor_68_face_landmarks.dat')
+detector: dlib.fhog_object_detector = dlib.get_frontal_face_detector()
+predictor: dlib.shape_predictor = dlib.shape_predictor('shape_predictor_68_face_landmarks.dat')
 
-blink_thresh = 0.25  
-succ_frame = 2 
-count_frame = 0
+blink_thresh: float = 0.25  
+succ_frame: int = 2 
+count_frame: int = 0
 
 (L_start, L_end) = face_utils.FACIAL_LANDMARKS_IDXS["left_eye"]
 (R_start, R_end) = face_utils.FACIAL_LANDMARKS_IDXS["right_eye"]
 
-cam = cv2.VideoCapture(0)
+cam: cv2.VideoCapture = cv2.VideoCapture(0)
 
 while True:
+    ret: bool
+    frame: cv2.Mat
     ret, frame = cam.read()
     if not ret:
         print("Failed to get frame. Exit.")
         break
 
-    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-    faces = detector(gray)
+    gray: cv2.Mat = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+    faces: dlib.rectangles = detector(gray)
 
     for face in faces:
         shape = predictor(gray, face)
