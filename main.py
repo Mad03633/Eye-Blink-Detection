@@ -38,16 +38,16 @@ while True:
     faces: dlib.rectangles = detector(gray)
 
     for face in faces:
-        shape = predictor(gray, face)
+        shape: dlib.full_object_detection = predictor(gray, face)
         shape = face_utils.shape_to_np(shape)
 
         left_eye = shape[L_start:L_end]
         right_eye = shape[R_start:R_end]
 
         if len(left_eye) > 0 and len(right_eye) > 0:
-            left_EAR = calculate_EAR(left_eye)
-            right_EAR = calculate_EAR(right_eye)
-            avg_EAR = (left_EAR + right_EAR) / 2.0
+            left_EAR: float = calculate_EAR(left_eye)
+            right_EAR: float = calculate_EAR(right_eye)
+            avg_EAR: float = (left_EAR + right_EAR) / 2.0
 
             if avg_EAR < blink_thresh:
                 count_frame += 1
